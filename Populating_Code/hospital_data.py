@@ -1,7 +1,7 @@
 import mysql.connector
 import pandas as pd
 
-my_db = mysql.connector.connect(host="localhost", user="Divy",passwd="dhruti")
+my_db = mysql.connector.connect(host="localhost", user="Divy",passwd="pwd")
 my_cur = my_db.cursor()
 
 #my_cur.execute("create database Hospital_Database")
