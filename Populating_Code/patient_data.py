@@ -2,12 +2,12 @@ import mysql.connector as mysql
 import pandas as pd
 import random as rd
 
-my_db = mysql.connect(host="localhost",user="Divy",passwd="pwd")
+my_db = mysql.connect(host="localhost",user="Divy",passwd="dhruti")
 
 my_cur = my_db.cursor()
 
 my_cur.execute("use Hospital_Database")
-my_cur.execute("drop table patients")
+my_cur.execute("drop table patients")	
 my_cur.execute("create table Patients(Id int (10) primary key,Name varchar(50),Age int(10),Height int(10),Weight int(10),Gender varchar(2),Blood_Group varchar(3),Illness varchar(50),Medication_Drug varchar(100),Doctor_Id varchar(256));")
 
 df_pat = pd.read_csv("../Dataset/patients.csv")
@@ -50,7 +50,6 @@ for i in range(1000):
 		else:
 			Tuple.append(str(df_pat[key][i]))
 	Tuple = tuple(Tuple)
-	print("hello")
-	my_cur.execute("insert into Patients (Id, Age,Gender,Weight,Height,Name,Doctor_Id,Blood_Group,Illness,Medication_Drug) Values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);",Tuple)
+	my_cur.execute("insert into Patients (Id, Age,Gender,Height,Weight,Name,Doctor_Id,Blood_Group,Illness,Medication_Drug) Values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);",Tuple)
 
 my_db.commit()
