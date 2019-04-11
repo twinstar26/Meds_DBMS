@@ -2,7 +2,7 @@ import mysql.connector as mysql
 import pandas as pd
 import random as rd
 
-my_db = mysql.connect(host="localhost",user="Divy",passwd="dhruti")
+my_db = mysql.connect(host="localhost",user="Divy",passwd="pwd")
 
 my_cur = my_db.cursor()
 
