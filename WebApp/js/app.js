@@ -10,6 +10,7 @@ app.set("views","/Meds_DBMS/WebApp/ejs")
 
 app.use(express.static("/Meds_DBMS/WebApp/css"))
 app.use(express.static("/Meds_DBMS/WebApp/js"))
+app.use(express.static("/Meds_DBMS/WebApp/Photos"))
 
 app.use(expressSanitizer())
 app.use(bodyParser.urlencoded({extended:true}))
