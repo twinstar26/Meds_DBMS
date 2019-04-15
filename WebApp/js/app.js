@@ -197,6 +197,162 @@ app.post("/insert/patients",function(req,res){
 	})
 })
 
+app.get("/insert/doctors",function(req,res){
+	res.render("doctors_form.ejs")
+})
+
+app.post("/insert/doctors",function(req,res){
+	var Values = []
+	var Fields = []
+	var sanitize = req.sanitize
+	var id = sanitize(req.body.id)
+	if(toString(id)=="[object Undefined]")
+	{
+		Fields.push("Id")
+		Values.push(id)
+	}
+	var name = sanitize(req.body.name)
+	if(toString(name)=="[object Undefined]")
+	{
+		Fields.push("Name")
+		Values.push(name)
+	}
+	var hospital_id = sanitize(req.body.hospital_id)
+	if(toString(hospital_id)=="[object Undefined]")
+	{
+		Fields.push("Hospital_Id")
+		Values.push(hospital_id)
+	}
+	var field_of_spec = sanitize(req.body.field_of_spec)
+	if(toString(field_of_spec)=="[object Undefined]")
+	{
+		Fields.push("Field_of_Spec")
+		Values.push(field_of_spec)
+	}
+	var years_of_exp = sanitize(req.body.years_of_exp)
+	if(toString(years_of_exp)=="[object Undefined]")
+	{
+		Fields.push("Years_of_Exp")
+		Values.push(years_of_exp)
+	}
+	var ins_query = "INSERT INTO doctors ("
+	ins_query += Fields[0]
+	for(let i=1;i<Fields.length;i++){
+		ins_query += ", "+Fields[i]
+	}
+	ins_query += ") VALUES (?)"
+	var arr = []
+	arr.push(Values)
+	db.query(ins_query,arr,function(error,result){
+		if(error){
+			console.log(error)
+			res.redirect("/insert/doctors")
+		}
+		else{
+			console.log(result)
+			res.redirect("/")
+		}
+	})
+})
+
+app.get("/insert/blood_bank",function(req,res){
+	res.render("blood_bank_form.ejs")
+})
+
+app.post("/insert/blood_bank",function(req,res){
+	var Values = []
+	var Fields = []
+	var sanitize = req.sanitize
+	var id = sanitize(req.body.id)
+	if(toString(id)=="[object Undefined]")
+	{
+		Fields.push("Id")
+		Values.push(id)
+	}
+	var recipents = sanitize(req.body.recipents)
+	if(toString(recipents)=="[object Undefined]")
+	{
+		Fields.push("Recipents")
+		Values.push(recipents)
+	}
+	var donors = sanitize(req.body.donors)
+	if(toString(donors)=="[object Undefined]")
+	{
+		Fields.push("Donors")
+		Values.push(donors)
+	}
+	var blood_group = sanitize(req.body.blood_group)
+	if(toString(blood_group)=="[object Undefined]")
+	{
+		Fields.push("Blood_Group")
+		Values.push(blood_group)
+	}
+	var quantity = sanitize(req.body.quantity)
+	if(toString(quantity)=="[object Undefined]")
+	{
+		Fields.push("Quantity")
+		Values.push(quantity)
+	}
+	var ins_query = "INSERT INTO blood_bank ("
+	ins_query += Fields[0]
+	for(let i=1;i<Fields.length;i++){
+		ins_query += ", "+Fields[i]
+	}
+	ins_query += ") VALUES (?)"
+	var arr = []
+	arr.push(Values)
+	db.query(ins_query,arr,function(error,result){
+		if(error){
+			console.log(error)
+			res.redirect("/insert/blood_bank")
+		}
+		else{
+			console.log(result)
+			res.redirect("/")
+		}
+	})
+})
+
+app.get("/insert/pharmacy_products",function(req,res){
+	res.render("pharmacy_products_form.ejs")
+})
+
+app.post("/insert/pharmacy_products",function(req,res){
+	var Values = []
+	var Fields = []
+	var sanitize = req.sanitize
+	var id = sanitize(req.body.id)
+	if(toString(id)=="[object Undefined]")
+	{	
+		Fields.push("Id")
+		Values.push(id)
+	}
+	var name_of_drug = sanitize(req.body.name_of_drug)
+	if(toString(name_of_drug)=="[object Undefined]")
+	{
+		Fields.push("Name_Of_Drug")
+		Values.push(name_of_drug)
+	}
+	var ins_query = "INSERT INTO pharmacy_products ("
+	ins_query += Fields[0]
+	for(let i=1;i<Fields.length;i++){
+		ins_query += ", "+Fields[i]
+	}
+	ins_query += ") VALUES (?)"
+	var arr = []
+	arr.push(Values)
+	db.query(ins_query,arr,function(error,result){
+		if(error){
+			console.log(error)
+			res.redirect("/insert/pharmacy_products")
+		}
+		else{
+			console.log(result)
+			res.redirect("/")
+		}
+	})
+})
+
 var server = app.listen("3000","127.0.0.1",function(){
 	console.log(server.address().address + " " + server.address().port)
 })

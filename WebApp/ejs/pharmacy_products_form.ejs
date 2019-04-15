@@ -1,0 +1,24 @@
+<% include header.ejs %>
+	<link rel="stylesheet" href="/pharmacy_products_form.css">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6 form-block">
+				<form action="/insert/pharmacy_products" method="POST">
+					<div class="form-group">
+						<label for="id"></label>
+						<input type="text" class="form-control input-lg" id="id" name="id" required placeholder="ID">
+					</div>
+					<div class="form-group">
+						<label for="name_of_drug"></label>
+						<input type="text" class="form-control input-lg" id="name_of_drug" name="name_of_drug" placeholder="Name Of Drug">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg">INSERT</button>
+				</form>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+	</div>
+<% include footer.ejs %>
