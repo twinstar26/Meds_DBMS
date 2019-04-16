@@ -22,6 +22,17 @@
 			<div class="col-lg-2">
 			</div>
 			<div class="col-lg-10">
+				<form action="/table-view/<%= fields[0]["table"] %>" method="POST">
+					<div class="form-group query-list">
+						<label for="query">SELECT A QUERY:</label>
+						<select class="form-control" id="query" name="query">
+							<option>1</option>
+							<option selected>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
+				</form>
 				<table class="table-data">
 					<tr>
 						<% for(let i=0;i<fields.length;i++){ %>

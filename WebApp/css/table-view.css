@@ -33,7 +33,7 @@
 	font-style:italic;
 }
 .table-data{	
-	margin-top:100px;
+	margin-top:50px;
 	margin-bottom:100px;
 	border-color:black;
 	border-collapse:collapse;
@@ -59,4 +59,7 @@ td, th{
 }
 tr:nth-child(2n){
 	background-color:#eee6ff;
+}
+.query-list{
+	margin-top:25px;
 }

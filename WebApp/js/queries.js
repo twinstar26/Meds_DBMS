@@ -72,7 +72,6 @@ var queries = {
 	pharmacy_products:[	
 				"SELECT * FROM pharmacy_products",
 				"SELECT COUNT(*) AS Number_Of_Pharmacy_Products FROM pharmacy_products",
-				"SELECT COUNT(*) FROM pharmacy_products",
 				"SELECT COUNT(*) FROM pharmacy_products WHERE Name_of_Drug > 'A' and Name_of_Drug < 'B'"
 				]
 }
