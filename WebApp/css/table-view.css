@@ -4,6 +4,12 @@
 	position:fixed;
 	z-index:10;
 }
+.ins-btn{
+	display:block;
+	margin-top:20px;
+	margin-left:auto;
+	margin-right:auto;
+}
 .table-name{
 	text-transform:uppercase;
 	text-align:center;

@@ -78,12 +78,13 @@ app.post("/insert/pharmacy_products",InsertFuncPharmacy_Product)
 app.get("/table-view/:table",function(req,res){
 	let tablename = req.params.table
 	let sel_query = "SELECT * FROM "+tablename
+	let ins_path = "/insert/"+tablename
 	db.query(sel_query,function(error,tuples,fields){
 		if(error){
 			console.log(error)
 		}
 		else{
-			res.render("table-view.ejs",{tuples:tuples,fields:fields})
+			res.render("table-view.ejs",{tuples:tuples,fields:fields,ins_path:ins_path})
 		}
 	})
 })
