@@ -75,18 +75,22 @@ app.get("/insert/pharmacy_products",function(req,res){
 var InsertFuncPharmacy_Product = require("./pharmacy_product_ins.js")
 app.post("/insert/pharmacy_products",InsertFuncPharmacy_Product)
 
+var queries = require("./queries.js")
 app.get("/table-view/:table",function(req,res){
 	let tablename = req.params.table
-	let sel_query = "SELECT * FROM "+tablename
-	let ins_path = "/insert/"+tablename
-	db.query(sel_query,function(error,tuples,fields){
-		if(error){
-			console.log(error)
-		}
-		else{
-			res.render("table-view.ejs",{tuples:tuples,fields:fields,ins_path:ins_path})
-		}
-	})
+	for(let i =0;i< queries[tablename].length;i++){
+		var sel_query = queries[tablename][i]
+		console.log(sel_query)
+		db.query(sel_query,function(error,tuples,fields){
+			if(error){
+				console.log(error)
+				return
+			}
+			else{
+				//res.render("table-view.ejs",{tuples:tuples,fields:fields,ins_path:ins_path})
+			}
+		})
+	}
 })
 
 var server = app.listen("3000","127.0.0.1",function(){

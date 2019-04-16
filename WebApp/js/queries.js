@@ -9,9 +9,6 @@ var queries = {
 				"SELECT * FROM hospitals WHERE Capacity<50",
 				"SELECT * FROM hospitals WHERE (Latitude>40 and Latitude<50) and (Longitude>40 and Longitude<50)",
 				"SELECT SUM(Capacity) as Total_Capcity FROM hospitals",
-				"INSERT INTO hospitals (Unique_Id,Name, Address, Contact_det, Field_of_Spec, Latitude, Longitude, Capacity) alues(val1, val2, val3, val4, val5, val6, val7)",
-				"UPDATE hospitals SET Capacity = Capacity + x WHERE NAME = str",
-				"DELETE FROM hospitals WHERE ID = str",
 				"SELECT Name FROM hospitals WHERE Latitude = (SELECT MAX(Latitude) FROM hospitals)",
 				"SELECT Name FROM hospitals WHERE Latitude = (SELECT MIN(Latitude) FROM hospitals)",
 				"SELECT Name FROM hospitals WHERE Latitude = (SELECT MIN(Longitude) FROM hospitals)",
@@ -67,8 +64,8 @@ var queries = {
 				"SELECT Blood_Group, MAX(cnt) AS max_bg FROM (SELECT Blood_Group, COUNT(*) as cnt FROM blood_bank GROUP BY Blood_Group) as p",
 				"SELECT Donors, MAX(Quantity) FROM blood_bank",
 				"SELECT Donors,MIN(Quantity) FROM blood_bank",
-				"SELECT Recipients, MAX(Quantity) FROM blood_bank",
-				"SELECT Recipients,MIN(Quantity) FROM blood_bank",
+				"SELECT Recipents, MAX(Quantity) FROM blood_bank",
+				"SELECT Recipents,MIN(Quantity) FROM blood_bank",
 				"SELECT * FROM blood_bank ORDER BY Quantity DESC",
 				"SELECT Blood_Group, SUM(Quantity) FROM blood_bank GROUP BY Blood_Group"
 				],
@@ -76,9 +73,7 @@ var queries = {
 				"SELECT * FROM pharmacy_products",
 				"SELECT COUNT(*) AS Number_Of_Pharmacy_Products FROM pharmacy_products",
 				"SELECT COUNT(*) FROM pharmacy_products",
-				"SELECT COUNT(*) FROM pharmacy_products WHERE Name_of_Drug > 'A' and Name_of_Drug < 'B'",
-				"SELECT COUNT(*) FROM pharmacy_products WHERE cost>x",
-				"SELECT Name_of_Drug, MAX(cost) FROM pharmacy_products",
-				"SELECT Name_of_Drug, MIN(cost) FROM pharmacy_products",
-				"SELECT AVG(cost) FROM pharmacy_products"]
+				"SELECT COUNT(*) FROM pharmacy_products WHERE Name_of_Drug > 'A' and Name_of_Drug < 'B'"
+				]
 }
+module.exports  = queries
