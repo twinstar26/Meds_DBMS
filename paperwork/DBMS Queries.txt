@@ -390,19 +390,19 @@ DBMS questions
         >SELECT AVG(Years_of_Exp) FROM doctors;
 
 
-* 76. How many total medicines are available?
-* >SELECT COUNT(*) FROM pharmacy_products 
-* * 77. How many medicines have names starting with ‘A’?
-*         >SELECT COUNT(*) FROM pharmacy_products
-*           WHERE Name_of_Drug > “A” and Name_of_Drug < “B”;
-* * 78. How many medicines are expired? //assume expired date given… in dataset
-* * 79. How many medicines have cost above ‘x’?
-*         >SELECT COUNT(*) FROM pharmacy_products
-*           WHERE cost>x;
-* * * 80. What’s the costliest medicine?
-*         >SELECT Name_of_Drug, MAX(cost) 
-*   FROM pharmacy_products;
-*           
+76. How many total medicines are available?
+ >SELECT COUNT(*) FROM pharmacy_products 
+77. How many medicines have names starting with ‘A’?
+         >SELECT COUNT(*) FROM pharmacy_products
+           WHERE Name_of_Drug > “A” and Name_of_Drug < “B”;
+78. How many medicines are expired? //assume expired date given… in dataset
+79. How many medicines have cost above ‘x’?
+         >SELECT COUNT(*) FROM pharmacy_products
+           WHERE cost>x;
+80. What’s the costliest medicine?
+         >SELECT Name_of_Drug, MAX(cost) 
+   FROM pharmacy_products;
+           
 81. What’s the cheapest medicine?
         >SELECT Name_of_Drug, MIN(cost) 
   FROM pharmacy_products;
