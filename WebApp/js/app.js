@@ -34,6 +34,8 @@ db.connect(function(error){
 	}
 })
 
+module.exports = db
+
 app.get("/",function(req,res){
 	res.render("home.ejs")
 })
@@ -42,314 +44,46 @@ app.get("/insert/hospitals",function(req,res){
 	res.render("hospitals_form.ejs")
 })
 
-app.post("/insert/hospitals",function(req,res){
-	var Values = []
-	var Fields = []
-	var sanitize = req.sanitize
-	var unique_id = sanitize(req.body.unique_id)
-	if(toString(unique_id)=="[object Undefined]")
-	{
-		Fields.push("Unique_Id")
-		Values.push(unique_id)
-	}
-	var name = sanitize(req.body.name)
-	if(toString(name)=="[object Undefined]")
-	{
-		Fields.push("Name")
-		Values.push(name)
-	}
-	var address = sanitize(req.body.address)
-	if(toString(address)=="[object Undefined]")
-	{
-		Fields.push("Address")
-		Values.push(address)
-	}
-	var contact_det = sanitize(req.body.contact_det)
-	if(toString(contact_det)=="[object Undefined]")
-	{
-		Fields.push("Contact_det")
-		Values.push(contact_det)
-	}
-	var field_of_spec = sanitize(req.body.field_of_spec)
-	if(toString(field_of_spec)=="[object Undefined]")
-	{
-		Fields.push("Field_of_Spec")
-		Values.push(field_of_spec)
-	}
-	var latitude = sanitize(req.body.latitude)
-	if(toString(latitude)=="[object Undefined]")
-	{
-		Fields.push("Latitude")
-		Values.push(latitude)
-	}
-	var longitude = sanitize(req.body.longitude)
-	if(toString(longitude)=="[object Undefined]")
-	{
-		Fields.push("Longitude")
-		Values.push(longitude)
-	}
-	var capacity = sanitize(req.body.capacity)
-	if(toString(capacity)=="[object Undefined]")
-	{
-		Fields.push("Capacity")
-		Values.push(capacity)
-	}
-	var ins_query = "INSERT INTO hospitals ("
-	ins_query += Fields[0]
-	for(let i=1;i<Fields.length;i++){
-		ins_query += ", "+Fields[i]
-	}
-	ins_query += ") VALUES (?)"
-	console.log(ins_query)
-	var arr = []
-	arr.push(Values)
-	db.query(ins_query,arr,function(error,result){
-		if(error){
-			console.log(error)
-			res.redirect("/insert/hospitals")
-		}
-		else{
-			console.log(result)
-			res.redirect("/")
-		}
-	})
-})
+InsertFuncHospital = require("./hospital_ins.js")
+app.post("/insert/hospitals",InsertFuncHospital)
 
 app.get("/insert/patients",function(req,res){
 	res.render("patients_form.ejs")
 })
 
-app.post("/insert/patients",function(req,res){
-	var Values = []
-	var Fields = []
-	var sanitize = req.sanitize
-	var patient_id = sanitize(req.body.unique_id)
-	if(toString(patient_id)=="[object Undefined]")
-	{
-		Fields.push("Id")
-		Values.push(patient_id)
-	}
-	var name = sanitize(req.body.name)
-	if(toString(name)=="[object Undefined]")
-	{
-		Fields.push("Name")
-		Values.push(name)
-	}
-	var age = sanitize(req.body.age)
-	if(toString(age)=="[object Undefined]")
-	{
-		Fields.push("Age")
-		Values.push(age)
-	}
-	var height = sanitize(req.body.height)
-	if(toString(height)=="[object Undefined]")
-	{
-		Fields.push("Height")
-		Values.push(height)
-	}
-	var weight = sanitize(req.body.weight)
-	if(toString(weight)=="[object Undefined]")
-	{
-		Fields.push("Weight")
-		Values.push(weight)
-	}
-	var gender = sanitize(req.body.gender)
-	if(toString(gender)=="[object Undefined]")
-	{
-		Fields.push("Gender")
-		Values.push(gender)
-	}
-	var illness = sanitize(req.body.illness)
-	if(toString(illness)=="[object Undefined]")
-	{
-		Fields.push("Illness")
-		Values.push(illness)
-	}
-	var medication_drug = sanitize(req.body.medication_drug)
-	if(toString(medication_drug)=="[object Undefined]")
-	{
-		Fields.push("Medication_Drug")
-		Values.push(medication_drug)
-	}
-	var doctor_id = sanitize(req.body.doctor_id)
-	if(toString(doctor_id)=="[object Undefined]")
-	{
-		Fields.push("Doctor_Id")
-		Values.push(doctor_id)
-	}
-	var ins_query = "INSERT INTO patients ("
-	ins_query += Fields[0]
-	for(let i=1;i<Fields.length;i++){
-		ins_query += ", "+Fields[i]
-	}
-	ins_query += ") VALUES (?)"
-	console.log(ins_query)
-	var arr = []
-	arr.push(Values)
-	db.query(ins_query,arr,function(error,result){
-		if(error){
-			console.log(error)
-			res.redirect("/insert/patients")
-		}
-		else{
-			console.log(result)
-			res.redirect("/")
-		}
-	})
-})
+var InsertFuncPatient = require("./patient_ins.js")
+app.post("/insert/patients",InsertFuncPatient)
 
 app.get("/insert/doctors",function(req,res){
 	res.render("doctors_form.ejs")
 })
 
-app.post("/insert/doctors",function(req,res){
-	var Values = []
-	var Fields = []
-	var sanitize = req.sanitize
-	var id = sanitize(req.body.id)
-	if(toString(id)=="[object Undefined]")
-	{
-		Fields.push("Id")
-		Values.push(id)
-	}
-	var name = sanitize(req.body.name)
-	if(toString(name)=="[object Undefined]")
-	{
-		Fields.push("Name")
-		Values.push(name)
-	}
-	var hospital_id = sanitize(req.body.hospital_id)
-	if(toString(hospital_id)=="[object Undefined]")
-	{
-		Fields.push("Hospital_Id")
-		Values.push(hospital_id)
-	}
-	var field_of_spec = sanitize(req.body.field_of_spec)
-	if(toString(field_of_spec)=="[object Undefined]")
-	{
-		Fields.push("Field_of_Spec")
-		Values.push(field_of_spec)
-	}
-	var years_of_exp = sanitize(req.body.years_of_exp)
-	if(toString(years_of_exp)=="[object Undefined]")
-	{
-		Fields.push("Years_of_Exp")
-		Values.push(years_of_exp)
-	}
-	var ins_query = "INSERT INTO doctors ("
-	ins_query += Fields[0]
-	for(let i=1;i<Fields.length;i++){
-		ins_query += ", "+Fields[i]
-	}
-	ins_query += ") VALUES (?)"
-	var arr = []
-	arr.push(Values)
-	db.query(ins_query,arr,function(error,result){
-		if(error){
-			console.log(error)
-			res.redirect("/insert/doctors")
-		}
-		else{
-			console.log(result)
-			res.redirect("/")
-		}
-	})
-})
+var InsertFuncDoctor = require("./doctor_ins.js")
+app.post("/insert/doctors",InsertFuncDoctor)
 
 app.get("/insert/blood_bank",function(req,res){
 	res.render("blood_bank_form.ejs")
 })
 
-app.post("/insert/blood_bank",function(req,res){
-	var Values = []
-	var Fields = []
-	var sanitize = req.sanitize
-	var id = sanitize(req.body.id)
-	if(toString(id)=="[object Undefined]")
-	{
-		Fields.push("Id")
-		Values.push(id)
-	}
-	var recipents = sanitize(req.body.recipents)
-	if(toString(recipents)=="[object Undefined]")
-	{
-		Fields.push("Recipents")
-		Values.push(recipents)
-	}
-	var donors = sanitize(req.body.donors)
-	if(toString(donors)=="[object Undefined]")
-	{
-		Fields.push("Donors")
-		Values.push(donors)
-	}
-	var blood_group = sanitize(req.body.blood_group)
-	if(toString(blood_group)=="[object Undefined]")
-	{
-		Fields.push("Blood_Group")
-		Values.push(blood_group)
-	}
-	var quantity = sanitize(req.body.quantity)
-	if(toString(quantity)=="[object Undefined]")
-	{
-		Fields.push("Quantity")
-		Values.push(quantity)
-	}
-	var ins_query = "INSERT INTO blood_bank ("
-	ins_query += Fields[0]
-	for(let i=1;i<Fields.length;i++){
-		ins_query += ", "+Fields[i]
-	}
-	ins_query += ") VALUES (?)"
-	var arr = []
-	arr.push(Values)
-	db.query(ins_query,arr,function(error,result){
-		if(error){
-			console.log(error)
-			res.redirect("/insert/blood_bank")
-		}
-		else{
-			console.log(result)
-			res.redirect("/")
-		}
-	})
-})
+var InsertFuncBlood_Bank = require("./blood_bank_ins.js")
+app.post("/insert/blood_bank",InsertFuncBlood_Bank)
 
 app.get("/insert/pharmacy_products",function(req,res){
 	res.render("pharmacy_products_form.ejs")
 })
 
-app.post("/insert/pharmacy_products",function(req,res){
-	var Values = []
-	var Fields = []
-	var sanitize = req.sanitize
-	var id = sanitize(req.body.id)
-	if(toString(id)=="[object Undefined]")
-	{	
-		Fields.push("Id")
-		Values.push(id)
-	}
-	var name_of_drug = sanitize(req.body.name_of_drug)
-	if(toString(name_of_drug)=="[object Undefined]")
-	{
-		Fields.push("Name_Of_Drug")
-		Values.push(name_of_drug)
-	}
-	var ins_query = "INSERT INTO pharmacy_products ("
-	ins_query += Fields[0]
-	for(let i=1;i<Fields.length;i++){
-		ins_query += ", "+Fields[i]
-	}
-	ins_query += ") VALUES (?)"
-	var arr = []
-	arr.push(Values)
-	db.query(ins_query,arr,function(error,result){
+var InsertFuncPharmacy_Product = require("./pharmacy_product_ins.js")
+app.post("/insert/pharmacy_products",InsertFuncPharmacy_Product)
+
+app.get("/table-view/:table",function(req,res){
+	let tablename = req.params.table
+	let sel_query = "SELECT * FROM "+tablename
+	db.query(sel_query,function(error,tuples,fields){
 		if(error){
 			console.log(error)
-			res.redirect("/insert/pharmacy_products")
 		}
 		else{
-			console.log(result)
-			res.redirect("/")
+			res.render("table-view.ejs",{tuples:tuples,fields:fields})
 		}
 	})
 })
