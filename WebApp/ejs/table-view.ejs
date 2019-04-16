@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-lg-2 desc">
 				<div class="table-name">
-					<%= fields[0]["table"] %>
+					<%= tablename %>
 				</div>
 				<div class="num_records">
 					<strong> NUMBER OF RECORDS : </strong><%= tuples.length %>
@@ -22,16 +22,20 @@
 			<div class="col-lg-2">
 			</div>
 			<div class="col-lg-10">
-				<form action="/table-view/<%= fields[0]["table"] %>" method="POST">
+				<form action="/table-view/<%= tablename %>" method="POST">
 					<div class="form-group query-list">
 						<label for="query">SELECT A QUERY:</label>
 						<select class="form-control" id="query" name="query">
-							<option>1</option>
-							<option selected>2</option>
-							<option>3</option>
-							<option>4</option>
+							<% for(let i=0;i<userin[tablename].length;i++){ %>
+								<% if(query_no==i){ %>
+									<option selected value="<%= i %>"><%= userin[tablename][i] %></option>
+								<%} else{ %>
+									<option value="<%= i %>"><%= userin[tablename][i] %></option>
+								<% } %>
+							<% } %>
 						</select>
 					</div>
+					<button type="submit" class="btn btn-primary btn-lg apply-btn">APPLY</button>
 				</form>
 				<table class="table-data">
 					<tr>

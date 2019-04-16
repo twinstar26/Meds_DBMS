@@ -76,6 +76,7 @@ var InsertFuncPharmacy_Product = require("./pharmacy_product_ins.js")
 app.post("/insert/pharmacy_products",InsertFuncPharmacy_Product)
 
 var queries = require("./queries.js")
+var userin = require("./userin.js")
 app.get("/table-view/:table",function(req,res){
 	let tablename = req.params.table
 	let query_no = req.query.state
@@ -86,9 +87,15 @@ app.get("/table-view/:table",function(req,res){
 			console.log(error)
 		}
 		else{
-			res.render("table-view.ejs",{tuples:tuples,fields:fields,ins_path:ins_path,query_no:query_no})
+			res.render("table-view.ejs",{tuples:tuples,fields:fields,ins_path:ins_path,query_no:query_no,userin:userin,tablename:tablename})
 		}
 	})
+})
+
+app.post("/table-view/:table",function(req,res){
+	var tablename = req.params.table
+	var query = req.body.query
+	res.redirect("/table-view/"+tablename+"/?state="+query)
 })
 
 var server = app.listen("3000","127.0.0.1",function(){

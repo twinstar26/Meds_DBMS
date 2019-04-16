@@ -10,6 +10,11 @@
 	margin-left:auto;
 	margin-right:auto;
 }
+.apply-btn{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
 .table-name{
 	text-transform:uppercase;
 	text-align:center;
