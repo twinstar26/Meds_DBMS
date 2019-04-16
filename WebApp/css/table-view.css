@@ -15,6 +15,7 @@
 	text-align:center;
 	font-weight:bold;
 	font-size:1.4em;
+	margin-top:10%;
 }
 .num_records{
 	text-align:center;
@@ -34,14 +35,10 @@
 .table-data{	
 	margin-top:100px;
 	margin-bottom:100px;
-	border-bottom-color:black;
+	border-color:black;
 	border-collapse:collapse;
-	border-bottom-width:1px;
-	border-bottom-style:solid;
-	border-top-color:black;
-	border-collapse:collapse;
-	border-top-width:1px;
-	border-top-style:solid;
+	border-width:1px;
+	border-style:solid;
 	width:100%;
 }
 .col-lg-10{
