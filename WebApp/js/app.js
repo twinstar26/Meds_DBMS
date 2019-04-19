@@ -19,7 +19,7 @@ app.use(methodOverride("_method"))
 var db = mysql.createConnection({
 	hostname:"localhost",
 	user:"root",
-	password:"pwd",
+	password:"dhruti",
 	database:"hospital_database",
 	multipleStatements:true
 })
