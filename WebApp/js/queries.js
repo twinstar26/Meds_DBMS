@@ -54,7 +54,7 @@ var queries = {
 				"SELECT MIN(Weight) FROM patients",
 				"SELECT Name, MAX(Height) FROM patients",
 				"SELECT Name, MIN(Height) FROM patients",
-				"SELECT (*) FROM patients WHERE Name LIKE ‘A%’"
+				"SELECT (*) FROM patients WHERE Name LIKE 'A%'"
 				],
 	blood_bank:[		
 				"SELECT * FROM blood_bank",
