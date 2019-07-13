@@ -1,0 +1,36 @@
+<% include header.ejs %>
+	<link rel="stylesheet" href="/doctors_form.css">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6 form-block">
+				<form action="/insert/doctors" method="POST">
+					<div class="form-group">
+						<label for="id"></label>
+						<input type="text" class="form-control input-lg" id="id" name="id" required placeholder="Doctor ID">
+					</div>
+					<div class="form-group">
+						<label for="name"></label>
+						<input type="text" class="form-control input-lg" id="name" name="name" placeholder="Name">						
+					</div>
+					<div class="form-group">
+						<label for="hospital_id"></label>
+						<input type="text" class="form-control input-lg" id="hospital_id" name="hospital_id" placeholder="Hospital ID">	
+					</div>
+					<div class="form-group">
+						<label for="field_of_spec"></label>
+						<input type="text" class="form-control input-lg" id="field_of_spec" name="field_of_spec" placeholder="Field Of Specialization">
+					</div>
+					<div class="form-group">
+						<label for="years_of_exp"></label>
+						<input type="text" class="form-control input-lg" id="year_of_exp" name="years_of_exp" placeholder="Years Of Experience">
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg">INSERT</button>
+				</form>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+	</div>
+<% include footer.ejs %>

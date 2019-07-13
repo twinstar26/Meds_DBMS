@@ -1,0 +1,58 @@
+.desc{
+	background-color:#eee6ff;
+	height:100vh;
+	position:fixed;
+	z-index:10;
+}
+.table-name{
+	text-transform:uppercase;
+	text-align:center;
+	font-weight:bold;
+	font-size:2em;
+}
+.num_records{
+	text-align:center;
+	margin-top:20px;
+	font-size:2em;
+}
+.fields{
+	text-transform:uppercase;
+	text-align:center;
+	margin-top:20px;
+}
+.field{
+	padding-top:2px;
+	padding-bottom:2px;
+	font-style:italic;
+}
+.table-data{	
+	margin-top:100px;
+	border-bottom-color:black;
+	border-collapse:collapse;
+	border-bottom-width:1px;
+	border-bottom-style:solid;
+	border-top-color:black;
+	border-collapse:collapse;
+	border-top-width:1px;
+	border-top-style:solid;
+	width:100%;
+}
+.col-lg-10{
+	overflow-x:visible;
+	overflow-y:visible;
+}
+td, th{
+	border-bottom-color:black;
+	border-collapse:collapse;
+	border-bottom-width:1px;
+	border-bottom-style:solid;
+	text-align:center;
+	font-size:1.3em;
+	padding-top:1px;
+	padding-bottom:1px;
+	padding-right:10px;
+	padding-left:10px;
+}
+tr:nth-child(2n){
+	background-color:#eee6ff;
+}

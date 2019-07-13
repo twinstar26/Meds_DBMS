@@ -1,0 +1,432 @@
+﻿Group 1       Batch B
+DIVY PATEL     171080056
+ATHARVA VEER      17108004
+RITWIK JOG       171080046
+
+
+
+
+DBMS questions
+
+
+1. Select all records from the table ‘hospitals’.
+> SELECT * FROM hospitals;
+
+
+2. Select all records from the table ‘doctors’.
+> SELECT * FROM doctors;
+
+
+3. Select all records from the table ‘patients’.
+> SELECT * FROM patients;
+
+
+ 4. Select all records from the table ‘blood_bank’.
+> SELECT * FROM blood_bank;
+
+
+5. Select all records from the table ‘pharmacy_products’.
+> SELECT * FROM pharmacy_products;
+
+
+6. Find the total number of hospitals in the database.
+        >SELECT COUNT(*) FROM hospitals;
+ 
+7. Find the total number of doctors in the database.
+        > SELECT COUNT(*) FROM doctors;
+
+
+8. Find the total number of patients in the database.
+        >SELECT COUNT(*) FROM patients;
+
+
+9. Find the total number of pharmacy products in the database.
+        >SELECT COUNT(*) FROM pharmacy_products;
+
+
+10. Find the total number of blood banks in the database.
+        >SELECT COUNT(*) FROM blood_bank;
+
+
+11. Find number of hospitals in each field of specialisation.
+        >SELECT Field_of_Spec, COUNT(*) FROM hospitals
+           GROUP BY Field_of_Spec;
+
+
+12. Select all Military hospitals from the table.
+        > SELECT * FROM hospitals 
+           WHERE Field_of_Spec like ‘MILITARY’;
+
+
+13. Order hospitals in increasing order of capacity.
+        >SELECT * FROM hospitals orderby Capacity DESC;
+
+
+14. Find all hospitals where the capacity is greater than ‘n’.
+        >SELECT * FROM hospitals 
+          WHERE Capacity>n;
+
+
+15. Find number of hospitals where the capacity is lesser than ‘n’.
+        >SELECT Count(*) FROM hospitals 
+          WHERE Capacity<n;
+
+
+16. Find all hospitals between a given range of latitude(m to n) and longitude(a-b).
+        >SELECT * FROM hospitals
+          WHERE (Latitude BETWEEN m AND n) 
+  AND (Longitude BETWEEN a AND b);
+
+
+17. Find the total capacity of all the hospitals in the database.
+        >SELECT Sum(*) FROM hospitals
+
+
+18. Insert new record to hospital database.
+        >INSERT INTO hospitals (Unique_Id,Name, Address, Contact_det,                                 Field_of_Spec, Latitude, Longitude, Capacity)
+ Values(val1, val2, val3, val4, val5, val6, val7);
+
+
+19. Update the capacity of a hospital having name as ‘str’ by ‘x’.
+        >UPDATE hospitals
+          SET Capacity = Capacity+x
+          WHERE Name like ‘str’;
+
+
+
+
+
+
+20. Delete a particular record of a hospital.
+        >DELETE FROM hospitals
+                WHERE Unique_Id = “str”
+
+
+21. Find the number of doctors working at each hospital.
+        >SELECT hospitals.name, COUNT(*) FROM hospitals, doctors
+  WHERE hospitals.Unique_Id=doctors.Hospital_Id
+  GROUP BY doctors.Hospital_Id;
+
+
+22. Arrange doctors in the decreasing order of their years of experience.
+        >SELECT * FROM doctors
+          ORDER BY Years_of_Exp DESC;
+
+
+23. Arrange doctors in the increasing order of their years of experience.
+        >SELECT * FROM doctors
+          ORDER BY Years_of_Exp ASC;
+
+
+24. Find all doctors who have more than ‘n’ years of experience.
+        >SELECT * FROM doctors
+          WHERE Years_of_Exp>n;
+
+
+25. Find all doctors who have less than ‘n’ years of experience.
+        >SELECT * FROM doctors
+          WHERE Years_of_Exp<n;
+
+
+26. Find number of doctors for each field of specialisation.
+        >SELECT Field_of_Spec, COUNT(*) FROM doctors
+          GROUP BY Field_of_Spec;
+
+
+27. Find the maximum number of doctors working in a particular field of specialisation.
+>SELECT Field_of_Spec, Max(CNT) as M FROM (SELECT Field_of_Spec,COUNT(*) as CNT FROM doctors GROUP BY Field_of_Spec) as P;
+
+
+
+
+28. Find all doctors with highest experience.
+        >SELECT name ,Years_of_Exp FROM doctors 
+             WHERE Years_of_Exp=(SELECT MAX(Years_of_Exp) FROM doctors); 
+
+
+29. Find all doctors with least experience.
+        >SELECT name ,Years_of_Exp FROM doctors 
+             WHERE Years_of_Exp=(SELECT MIN(Years_of_Exp) FROM doctors); 
+
+
+30. Select all male patients.
+        >SELECT * FROM patients 
+          WHERE Gender=’M’;
+
+
+31. Select all female patients.
+        >SELECT * FROM patients 
+          WHERE Gender=’F’;
+
+
+32. Find number of patients assigned to each doctor.
+        >SELECT COUNT(patients.Name), doctors.Name FROM doctors, patients
+  WHERE patients.Doctor_Id=doctors.Id
+  GROUP BY doctors.name;
+
+
+33. Find number of patients having cancer.
+        >SELECT COUNT(*) FROM patients
+          WHERE Illness like ’Cancer’;
+
+
+34. Find number of patients suffering from each illness.
+        >SELECT Illness, COUNT(*) FROM patients 
+          GROUP BY Illness;
+
+
+35. How many different blood groups are there?
+        >SELECT COUNT(DISTINCT(Blood_Group)) 
+             FROM patients;
+
+
+36. How many patients are there in each blood group?
+        >SELECT Blood_Group, COUNT(*) FROM patients
+  GROUP BY Blood_Group;
+
+
+37. Which is the most common blood group?
+        >SELECT Blood_Group, MAX(cnt) AS mx FROM 
+  (SELECT Blood_Group, COUNT(*) as cnt FROM patients 
+  GROUP BY Blood_Group) as p;
+
+
+38. Which is the least common blood group?
+        >SELECT Blood_Group, MIN(cnt) AS mn FROM 
+  (SELECT Blood_Group, COUNT(*) as cnt FROM patients 
+  GROUP BY Blood_Group) as p;
+
+
+39. Find the number of patients on each type of medication.
+        >SELECT Medication_Drug, COUNT(*) FROM patients
+          GROUP BY Medication_Drug;
+
+
+40. Which is the most common medicine given to patients?
+        >SELECT Medication_Drug, MAX(cnt) AS max_drug FROM 
+  (SELECT Medication_Drug, COUNT(*) as cnt FROM patients 
+  GROUP BY Medication_Drug) as p;
+
+
+41. How many patients are above the age of 50?
+        >SELECT COUNT(*) FROM patients
+          WHERE Age>50;
+
+
+42. What is the average age of the patients?
+        >SELECT AVG(Age) FROM patients;
+
+
+43. How old is the oldest patient?
+        >SELECT MAX(Age) FROM patient;
+
+
+
+
+
+
+
+
+44. Which is the most common illness?
+        >SELECT Illness, MAX(cnt) AS max_illness FROM 
+  (SELECT Illness, COUNT(*) as cnt FROM patients 
+  GROUP BY Illness) as p;
+
+
+
+
+45. What is the oldest patient who has cancer?
+        >SELECT MAX(Age) FROM patients
+          WHERE Illness like ‘Cancer’;
+
+
+46. What is the oldest patient who has cancer?
+        >SELECT MIN(Age) FROM patients
+          WHERE Illness like ‘Cancer’;
+
+
+47. What is the average age of cancer patients?
+        >SELECT AVG(Age) FROM patients
+          WHERE Illness like ‘Cancer’;
+
+
+48. Which doctor has the highest number of patients?
+        >CREATE VIEW v AS 
+  (SELECT doctors.name AS doc_name, COUNT(*) AS cnt 
+  FROM patients, doctors
+  WHERE doctors.Id=patients.Doctor_Id);
+               SELECT doc_name, MAX(cnt) FROM v;
+
+
+49. What are the different medicines prescribed to cancer patients?
+        >SELECT DISTINCT(Medication_Drug) FROM patients
+  WHERE Illness LIKE 'Cancer';
+
+
+50. What is the average weight of the patients?
+        >SELECT AVG(Weight) FROM patients;
+
+
+51. What is the maximum weight a person can have?
+        >SELECT MAX(Weight) FROM patients;
+
+
+52. What is the maximum weight a person can have?
+        >SELECT MIN(Weight) FROM patients;
+
+
+53. Who is the tallest patient?
+        >SELECT Name, MAX(Height) FROM patients;
+
+
+
+
+54. Who is the shortest patient?
+        >SELECT Name, MIN(Height) FROM patients;
+
+
+55. Show all patients whose name starts with ‘A’.
+        >SELECT (*) FROM patients
+          WHERE Name like ‘A%’;
+
+
+56. Which doctor has the least number of patients?
+        >CREATE VIEW v AS 
+  (SELECT doctors.name AS doc_name, COUNT(*) AS cnt 
+  FROM patients, doctors
+  WHERE doctors.Id=patients.Doctor_Id);
+               SELECT doc_name, MIN(cnt) FROM v;
+
+
+57. How many people have donated blood to the blood bank?
+        >SELECT COUNT(DISTINCT(Donors)) FROM blood_bank;
+
+
+58. What is the average quantity of blood donated?
+        >SELECT AVG(Quantity) FROM blood_bank;
+
+
+59. What is the most common blood group donated?
+        >SELECT Blood_Group, MAX(cnt) AS max_bg FROM 
+  (SELECT Blood_Group, COUNT(*) as cnt FROM blood_bank 
+  GROUP BY Blood_Group) as p;
+
+
+60. Who donated the most amount of blood?
+        >SELECT Donors, MAX(Quantity) FROM blood_bank;
+
+
+61. Who donated the least amount of blood?
+        >SELECT Donors,MIN(Quantity) FROM blood_bank;
+
+
+62. Who received the most amount of blood?
+        >SELECT Recipients, MAX(Quantity) FROM blood_bank;
+
+
+63. Who received the least amount of blood?
+        >SELECT Recipients,MIN(Quantity) FROM blood_bank;
+
+
+64. Arrange the amount of blood donated from highest to lowest.
+        >SELECT * FROM blood_bank
+          ORDER BY Quantity DESC;
+
+
+65. How much blood of each type was donated?
+        >SELECT Blood_Group, SUM(Quantity) FROM blood_bank
+          GROUP BY Blood_Group;
+
+
+66. Which blood group received maximum donation?
+        >CREATE VIEW v AS 
+  (SELECT Blood_Group, SUM(Quantity) AS qnt FROM blood_bank);
+  SELECT Blood_Group, MAX(qnt) FROM v;
+
+
+67. Which blood group received minimum donation?
+        >CREATE VIEW v AS 
+  (SELECT Blood_Group, SUM(Quantity) AS qnt FROM blood_bank);
+  SELECT Blood_Group, MIN(qnt) FROM v;
+
+
+68. Which is the Northernmost hospital in the country?
+        >SELECT Name FROM hospitals
+          WHERE Latitude = (SELECT MAX(Latitude) FROM hospitals);
+
+
+69. Which is the Southernmost hospital in the country?
+        >SELECT Name FROM hospitals
+          WHERE Latitude = (SELECT MIN(Latitude) FROM hospitals);
+
+
+70. Which is the Easternmost hospital in the country?
+        >SELECT Name FROM hospitals
+          WHERE Longitude = (SELECT MIN(Longitude) FROM hospitals);
+
+
+71. Which is the Westernmost hospital in the country?
+        >SELECT Name FROM hospitals
+          WHERE Latitude = (SELECT MAX(Longitude) FROM hospitals);
+
+
+
+
+72. Which hospital has the maximum capacity?
+        >SELECT Name, MAX(Capacity) FROM hospitals;
+
+
+73. Which hospital has the minimum capacity?
+        >SELECT Name, MIN(Capacity) FROM hospitals;
+
+
+74. Increase the experience of all doctors whose experience is less than 10 years by one.
+        >UPDATE doctors
+          SET Years_of_Exp = Years_of_Exp + 1
+          WHERE Years_of_Exp<10;
+
+
+75. What is the average experience of all the doctors?
+        >SELECT AVG(Years_of_Exp) FROM doctors;
+
+
+76. How many total medicines are available?
+ >SELECT COUNT(*) FROM pharmacy_products 
+77. How many medicines have names starting with ‘A’?
+         >SELECT COUNT(*) FROM pharmacy_products
+           WHERE Name_of_Drug > “A” and Name_of_Drug < “B”;
+78. How many medicines are expired? //assume expired date given… in dataset
+79. How many medicines have cost above ‘x’?
+         >SELECT COUNT(*) FROM pharmacy_products
+           WHERE cost>x;
+80. What’s the costliest medicine?
+         >SELECT Name_of_Drug, MAX(cost) 
+   FROM pharmacy_products;
+           
+81. What’s the cheapest medicine?
+        >SELECT Name_of_Drug, MIN(cost) 
+  FROM pharmacy_products;
+
+
+82. What’s the average cost  of medicines?
+        >SELECT AVG(cost) FROM pharmacy_products;
+
+
+83. Outbreaks in last year.
+84. Which area was most affected by the outbreak
+85. Which area was least affected by the outbreak
+86. Outbreaks of last 10 years.
+87. Which disease killed the most
+88. Which disease killed the least
+89. How many children were affected
+90. How many newborns were affected
+91. How many senior citizens were affected
+92. What is the mean age which was affected the most
+93. What is the mean age which was affected the least
+94. How many women were affected
+95. How many men were affected
+96. How many babies were born
+97. How many babies were male
+98. How many babies were female
+99. What is the male/female ratio
+100. How many babies were born defective?

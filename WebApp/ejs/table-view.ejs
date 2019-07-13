@@ -1,0 +1,61 @@
+<% include header.ejs %>
+	<link rel="stylesheet" href="/table-view.css">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-2 desc">
+				<div class="table-name">
+					<%= tablename %>
+				</div>
+				<div class="num_records">
+					<strong> NUMBER OF RECORDS : </strong><%= tuples.length %>
+				</div>
+				<div class="fields">
+					<strong style="display:block;margin-bottom:4px;font-size:1.4em;">FIELDS : </strong>
+					<% for(var i =0;i<fields.length;i++){ %>
+						<div class="field">
+							<%= fields[i]["name"] %>
+						</div>
+					<% } %>
+				</div>
+				<a href="<%= ins_path %>"><button type="button" class="ins-btn btn btn-primary btn-lg">INSERT A RECORD</button></a>
+			</div>
+			<div class="col-lg-2">
+			</div>
+			<div class="col-lg-10">
+				<form action="/table-view/<%= tablename %>" method="POST">
+					<div class="form-group query-list">
+						<label for="query">SELECT A QUERY:</label>
+						<select class="form-control" id="query" name="query">
+							<% for(let i=0;i<userin[tablename].length;i++){ %>
+								<% if(query_no==i){ %>
+									<option selected value="<%= i %>"><%= userin[tablename][i] %></option>
+								<%} else{ %>
+									<option value="<%= i %>"><%= userin[tablename][i] %></option>
+								<% } %>
+							<% } %>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg apply-btn">APPLY</button>
+				</form>
+				<table class="table-data">
+					<tr>
+						<% for(let i=0;i<fields.length;i++){ %>
+							<th>
+								<%= fields[i]["name"] %>
+							</th>
+						<% } %>
+					</tr>
+					<% for(let i=0;i<tuples.length;i++){%>
+						<tr>
+							<% for(let j=0;j<fields.length;j++){ %>
+								<td>
+									<%= tuples[i][fields[j]["name"]] %>
+								</td>
+							<% } %>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+		</div>
+	</div>
+<% include footer.ejs %>
